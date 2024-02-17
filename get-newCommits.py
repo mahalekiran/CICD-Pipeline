@@ -46,14 +46,16 @@ def check_for_new_commits(username, repository, current_commit_sha, token):
     else:
         print("No new commits.")
 
-if __name__ == "__main__":
-    github_username = 'mahalekiran'
-    repository_name = 'CICD-Pipeline'
+if __name__ == "__main__":    
+    try:
+        github_username = 'mahalekiran'
+        repository_name = 'CICD-Pipeline'
     
-    # Get latest SHA commit
-    current_commit_sha = get_current_commit_sha()
+        # Get latest SHA commit
+        current_commit_sha = get_current_commit_sha()
 
-    #GitHub personal access token
-    token = get_github_token()#'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'
-    
-    check_for_new_commits(github_username, repository_name, current_commit_sha, token)
+        #GitHub personal access token
+        token = get_github_token()
+        check_for_new_commits(github_username, repository_name, current_commit_sha, token)
+    except Exception as error:
+        print("Some error occurred: "+ str(error))
