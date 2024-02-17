@@ -2,6 +2,11 @@ import getpass
 import subprocess
 import requests
 
+def get_github_token():
+    # Get the personal access token from the user
+    github_token = getpass.getpass(prompt='Enter your GitHub personal access token: ')
+    return github_token
+
 def get_current_commit_sha():
     try:
         # Run the git log command 
@@ -42,7 +47,6 @@ def check_for_new_commits(username, repository, current_commit_sha, token):
         print("No new commits.")
 
 if __name__ == "__main__":
-    # Replace 'your_github_username' and 'your_repository_name' with your GitHub username and repository name
     github_username = 'mahalekiran'
     repository_name = 'CICD-Pipeline'
     
@@ -50,6 +54,6 @@ if __name__ == "__main__":
     current_commit_sha = get_current_commit_sha()
 
     #GitHub personal access token
-    token = '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'
+    token = get_github_token()#'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'
     
     check_for_new_commits(github_username, repository_name, current_commit_sha, token)
